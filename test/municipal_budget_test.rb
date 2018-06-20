@@ -89,7 +89,7 @@ class MunicipalBudgetTest < Minitest::Test
     municipal_budget.add_budget_category(budget_category_1)
     municipal_budget.add_budget_category(budget_category_2)
 
-    assert_equal ["Appliances, Printing"], municipal_budget.alphabetical_budget_categories
+    assert_equal ["Appliances", "Printing"], municipal_budget.alphabetical_budget_categories
   end
 
 end

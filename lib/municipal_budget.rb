@@ -28,9 +28,9 @@ class MunicipalBudget
   end
 
   def alphabetical_budget_categories
-    @budget_categories.sort_by do |budget_category|
+    @budget_categories.map do |budget_category|
       budget_category.name
-    end
+    end.sort
   end
 
 end
