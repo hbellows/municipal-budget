@@ -1,12 +1,8 @@
 class MunicipalBudget
   attr_reader :expenses
-              # :departments,
-              # :budget_categories
 
   def initialize
     @expenses = []
-    # @departments = []
-    # @budget_categories = []
   end
 
   def add_expense(expense)
