@@ -100,8 +100,7 @@ class MunicipalBudgetTest < Minitest::Test
 
     municipal_budget.add_expense(expense_1)
     municipal_budget.add_expense(expense_2)
-    
+
     assert_equal ["Appliances", "Printing"], municipal_budget.alphabetical_budget_categories
   end
-
 end
