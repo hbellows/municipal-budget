@@ -7,6 +7,4 @@ class Department
     @expenses = []
   end
 
-
-
 end

@@ -41,11 +41,17 @@ class MunicipalBudgetTest < Minitest::Test
   def test_it_has_departments
     municipal_budget = MunicipalBudget.new
     department_1 = Department.new("Parks and Recreation")
-    department_2 = Department.new("Forest")
     budget_category = BudgetCategory.new("Appliances")
+    expense_1 = Expense.new(department_1, budget_category, "656.50")
 
-    municipal_budget.add_department(department_1)
-    municipal_budget.add_department(department_2)
+    municipal_budget.add_expense(expense_1)
+
+    assert_equal [expense_1], municipal_budget.expenses
+    assert_equal 1, municipal_budget.expenses.count
+
+    department_2 = Department.new("Forest")
+    expense_2 = Expense.new(department_2, budget_category, "20.45")
+    municipal_budget.add_expense(expense_2)
 
     assert_equal [department_1, department_2], municipal_budget.departments
   end
@@ -53,13 +59,19 @@ class MunicipalBudgetTest < Minitest::Test
   def test_it_has_budget_categories
     municipal_budget = MunicipalBudget.new
     department_1 = Department.new("Parks and Recreation")
-    budget_category_1 = BudgetCategory.new("Appliances")
-    budget_category_2 = BudgetCategory.new("Foods")
+    budget_category = BudgetCategory.new("Appliances")
+    expense_1 = Expense.new(department_1, budget_category, "656.50")
 
-    municipal_budget.add_budget_category(budget_category_1)
-    municipal_budget.add_budget_category(budget_category_2)
+    municipal_budget.add_expense(expense_1)
 
-    assert_equal [budget_category_1, budget_category_2], municipal_budget.budget_categories
+    assert_equal [expense_1], municipal_budget.expenses
+    assert_equal 1, municipal_budget.expenses.count
+
+    department_2 = Department.new("Forest")
+    expense_2 = Expense.new(department_2, budget_category, "20.45")
+    municipal_budget.add_expense(expense_2)
+
+    assert_equal [budget_category, budget_category], municipal_budget.budget_categories
   end
 
   def test_it_can_calculate_expenses
@@ -86,9 +98,9 @@ class MunicipalBudgetTest < Minitest::Test
     budget_category_2 = BudgetCategory.new("Appliances")
     expense_2 = Expense.new(department, budget_category_2, "20.45")
 
-    municipal_budget.add_budget_category(budget_category_1)
-    municipal_budget.add_budget_category(budget_category_2)
-
+    municipal_budget.add_expense(expense_1)
+    municipal_budget.add_expense(expense_2)
+    
     assert_equal ["Appliances", "Printing"], municipal_budget.alphabetical_budget_categories
   end
 

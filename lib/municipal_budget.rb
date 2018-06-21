@@ -1,24 +1,28 @@
 class MunicipalBudget
-  attr_reader :expenses,
-              :departments,
-              :budget_categories
+  attr_reader :expenses
+              # :departments,
+              # :budget_categories
 
   def initialize
     @expenses = []
-    @departments = []
-    @budget_categories = []
+    # @departments = []
+    # @budget_categories = []
   end
 
   def add_expense(expense)
     @expenses << expense
   end
 
-  def add_department(department)
-    @departments << department
+  def departments
+    @expenses.map do |expense|
+      expense.department
+    end
   end
 
-  def add_budget_category(budget_category)
-    @budget_categories << budget_category
+  def budget_categories
+    @expenses.map do |expense|
+      expense.budget_category
+    end
   end
 
   def total_expenses
@@ -28,8 +32,8 @@ class MunicipalBudget
   end
 
   def alphabetical_budget_categories
-    @budget_categories.map do |budget_category|
-      budget_category.name
+    @expenses.map do |expense|
+      expense.budget_category.name
     end.sort
   end
 
